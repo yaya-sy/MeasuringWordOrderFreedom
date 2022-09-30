@@ -7,7 +7,7 @@ from typing import Iterable, Iterator, List, Tuple
 from pathlib import Path
 from collections import defaultdict
 from math import log2
-
+from argparse import ArgumentParser
 # non native packages
 import pandas as pd
 
@@ -157,20 +157,24 @@ class HeadDirectionEntropy:
         joint_counts_table: defaultdict = self.joint_counts(utterances_tree, max_sentences)
         return self.head_direction_entropy(joint_counts_table)
 
-def parse_args():
+def parse_arguments():
     """Get the arguments from command line."""
+    parser = ArgumentParser()
+    parser.add_argument("-c", "--corpora_folder", help="File containing the conll copora.")
+    parser.add_argument("-o", "--output_path", help="Where the results will be stored.")
+    return parser.parse_args()
 
 def main():
     """
     Call the head direction entropy estimator\
     from conll corpora.
     """
-    args = parse_args()
+    args = parse_arguments()
     output_path = Path(args.output_path)
     output_path.mkdir(exist_ok=True, parents=True)
     entropy_estimator = HeadDirectionEntropy()
     results = []
-    for conll_file in Path(args.corpora_folder).glob("*.conll"):
+    for conll_file in Path(args.corpora_folder).glob("*.conllu"):
         language = conll_file.stem
         entropy_1000 = entropy_estimator(conll_file, 1000)
         entropy_all = entropy_estimator(conll_file, None)
@@ -180,6 +184,7 @@ def main():
                             "entropy_all" : entropy_all
                             }
         results.append(language_results)
+    print(results)
     pd.DataFrame(results).to_csv(output_path / "restults.csv")
 
 
