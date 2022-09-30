@@ -79,8 +79,8 @@ class HeadDirectionEntropy:
         - sentences: Iterable
             Iterable containing the triplets for each sentence.
         
-        Return
-        ------
+        Returns
+        -------
         - defaultdict:
             Dictionnary associating each triplet the number\
             of time the dependant preceeds or follows its head.
@@ -120,8 +120,8 @@ class HeadDirectionEntropy:
             The joint count between the variable describing the trees and\
             the binary variable describing the head direction (initial of final).
         
-        Return
-        ------
+        Returns
+        -------
         - float:
             The conditional entropy of the head directions given the trees.
         """
