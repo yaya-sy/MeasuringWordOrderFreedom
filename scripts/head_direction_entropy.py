@@ -128,10 +128,10 @@ class HeadDirectionEntropy:
         conditional_entropy = 0.0
         total_tree_features = self.compute_total_tree_features(joint_counts_table)
         for tree_feature in joint_counts_table:
-            seen_tree_feature = sum(joint_counts_table[tree_feature].values())
-            prob_tree_feature = seen_tree_feature / total_tree_features
+            feature_occurences = sum(joint_counts_table[tree_feature].values())
+            prob_tree_feature = feature_occurences / total_tree_features
             for direction in joint_counts_table[tree_feature]:
-                prob_direction_given_tree = joint_counts_table[tree_feature][direction] / seen_tree_feature
+                prob_direction_given_tree = joint_counts_table[tree_feature][direction] / feature_occurences
                 entropy_direction_given_tree = prob_direction_given_tree * log2(prob_direction_given_tree)
                 conditional_entropy -= prob_tree_feature * entropy_direction_given_tree
         return conditional_entropy
