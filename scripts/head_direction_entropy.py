@@ -24,7 +24,7 @@ class HeadDirectionEntropy:
     """
     This class implements the Head Direction Entropy for\
     measuring the degree of freedom of the word order.
-    Futrell () proposes to measure this by looking how well\
+    (Futrell et al., 2015) proposes to measure this by looking how well\
     the word order of a given sentence can be predicted
     given its tree.
     """
@@ -117,13 +117,13 @@ class HeadDirectionEntropy:
         Parameters
         ----------
         - joint_counts_table:
-            The joint count between the variable describing the trees and\
-            the binary variable describing the head direction (initial of final).
+            The joint counts between the variable describing the trees and\
+            the binary variable describing the head direction ("INITIAL" or "FINAL").
         
         Returns
         -------
         - float:
-            The conditional entropy of the head directions given the trees.
+            The conditional entropy of the head direction given the trees.
         """
         conditional_entropy = 0.0
         total_tree_features = self.compute_total_tree_features(joint_counts_table)
