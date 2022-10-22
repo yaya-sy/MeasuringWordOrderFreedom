@@ -35,6 +35,7 @@ python scripts/head_direction_entropy.py -c data/ -o results/
 ```
 
 where:
+
 `-c Folder containing the conll copora.`
 
 `-o Where the results will be stored.`
