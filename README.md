@@ -23,6 +23,7 @@ python scripts/download_conllu_corpora.py -c configs/configs.yml -o data
 where:
 
 `-c The config file containing the urls of the Universal Dependencies corpora for each language.`
+
 `-o The folder where the downloaded corpora will be stored.`
 
 ## Run the estimations of the Head Direction Entropy
@@ -35,4 +36,5 @@ python scripts/head_direction_entropy.py -c data/ -o results/
 
 where:
 `-c Folder containing the conll copora.`
+
 `-o Where the results will be stored.`
