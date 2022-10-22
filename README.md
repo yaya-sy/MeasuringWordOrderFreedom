@@ -2,7 +2,7 @@
 
 This github repo tries de reproduce the results of the Head Direction Entropy for measuring the degree of word order freedom in human languages. This metric is presented in details in [Quantifying Word Order Freedom in Dependency Corpora](https://aclanthology.org/W15-2112) (Futrell et al., 2015)
 ## Activate the conda environment
-I advise to use a conda environment. You can create it using the following command line:
+I advise to use a conda environment. You can create it by using the following command line:
 ```bash
 conda env create -f environment.yml
 ```
