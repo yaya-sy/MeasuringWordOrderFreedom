@@ -1,10 +1,72 @@
+# Tamil:
+# - https://raw.githubusercontent.com/UniversalDependencies/UD_Tamil-TTB/master/ta_ttb-ud-train.conllu
+Telugu:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Telugu-MTG/master/te_mtg-ud-train.conllu
+Irish:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Irish-IDT/master/ga_idt-ud-train.conllu
+Hindi:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Hindi-HDTB/master/hi_hdtb-ud-train.conllu
+English:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_English-EWT/master/en_ewt-ud-train.conllu
+Turkish:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Turkish-BOUN/master/tr_boun-ud-train.conllu
+Arabic:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Arabic-NYUAD/master/ar_nyuad-ud-train.conllu
+Japanese:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Japanese-GSD/master/ja_gsd-ud-train.conllu
 French:
 - https://raw.githubusercontent.com/UniversalDependencies/UD_French-GSD/master/fr_gsd-ud-train.conllu
+Italian:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Italian-ISDT/master/it_isdt-ud-train.conllu
+Portuguese:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Portuguese-GSD/master/pt_gsd-ud-train.conllu
+Swedish:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Swedish-Talbanken/master/sv_talbanken-ud-train.conllu
+Romanian:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Romanian-RRT/master/ro_rrt-ud-train.conllu
+Bulgarian:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Bulgarian-BTB/master/bg_btb-ud-train.conllu
+Catalan:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Catalan-AnCora/master/ca_ancora-ud-train.conllu
+Modern Greek:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Greek-GDT/master/el_gdt-ud-train.conllu
+Spanish:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Spanish-GSD/master/es_gsd-ud-train.conllu
+Dutch:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Dutch-Alpino/master/nl_alpino-ud-train.conllu
+Finnish:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Finnish-TDT/master/fi_tdt-ud-train.conllu
+Hebrew:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Hebrew-HTB/master/he_htb-ud-train.conllu
+Czech:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Czech-CAC/master/cs_cac-ud-train.conllu
+Persian:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Persian-Seraji/master/fa_seraji-ud-train.conllu
+# Hungarian:
+# - https://raw.githubusercontent.com/UniversalDependencies/UD_Hungarian-Szeged/master/hu_szeged-ud-train.conllu
+Danish:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Danish-DDT/master/da_ddt-ud-train.conllu
+Slovenian:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Slovenian-SSJ/master/sl_ssj-ud-train.conllu
+Russian:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Russian-GSD/master/ru_gsd-ud-train.conllu
+Estonian:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Estonian-EWT/master/et_ewt-ud-train.conllu
 German:
 - https://raw.githubusercontent.com/UniversalDependencies/UD_German-GSD/master/de_gsd-ud-train.conllu
-Greek:
-- https://raw.githubusercontent.com/UniversalDependencies/UD_Ancient_Greek-PROIEL/master/grc_proiel-ud-train.conllu
+Slovak:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Slovak-SNK/master/sk_snk-ud-train.conllu
+Croatian:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Croatian-SET/master/hr_set-ud-train.conllu
+Basque:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Basque-BDT/master/eu_bdt-ud-train.conllu
 Latin:
 - https://raw.githubusercontent.com/UniversalDependencies/UD_Latin-PROIEL/master/la_proiel-ud-train.conllu
-Tamil:
-- https://raw.githubusercontent.com/UniversalDependencies/UD_Tamil-TTB/master/ta_ttb-ud-train.conllu
+Ancient Greek:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Ancient_Greek-PROIEL/master/grc_proiel-ud-train.conllu
+Wolof:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Wolof-WTB/master/wo_wtb-ud-train.conllu
+Bambara:
+- https://raw.githubusercontent.com/UniversalDependencies/UD_Bambara-CRB/master/bm_crb-ud-test.conllu
+# Yoruba:
+# - https://raw.githubusercontent.com/UniversalDependencies/UD_Yoruba-YTB/master/yo_ytb-ud-test.conllu

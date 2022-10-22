@@ -8,8 +8,14 @@ from pathlib import Path
 from collections import defaultdict
 from math import log2
 from argparse import ArgumentParser
+import logging
+
 # non native packages
 import pandas as pd
+from tqdm import tqdm
+
+LOGGER = logging.getLogger(__name__)
+logging.basicConfig(level=logging.DEBUG)
 
 PoS = str
 Head = int
@@ -30,7 +36,7 @@ class HeadDirectionEntropy:
     """
 
     def trees(self,
-              conll_file: str
+              conllu_file: str
               ) -> Iterator[UtteranceTree]:
         """
         Retrieve local trees relevant for computing\
@@ -50,22 +56,22 @@ class HeadDirectionEntropy:
         """
 
         utterance_trees: list = []
-        with open(conll_file, "r") as trees_file:
+        with open(conllu_file, "r") as trees_file:
             for line in trees_file :
                 line: str = line.strip()
-                if line.startswith("#") or not line :
+                if line.startswith("#") or (not line) :
                     if utterance_trees : 
                         yield utterance_trees
                         utterance_trees: list = []
-                        continue
                     continue
                 idx, _, _, pos, _, _, head, relation = line.split("\t")[:8]
-                if "-" in idx : 
+                if "-" in idx or  "_" in {idx, pos, head, relation}: 
                     continue
                 utterance_trees.append((pos, int(head), relation))
     
     def joint_counts(self,
                      utterance_trees: Iterable[UtteranceTree],
+                     language,
                      max_sentences: int=1_000
                      ) -> defaultdict:
         """
@@ -99,6 +105,8 @@ class HeadDirectionEntropy:
                 head_pos, *_ = sentence[head - 1]
                 count_table[(dependant_pos, head_pos, relation)][head_direction] += 1
             sentences_counter += 1
+        if max_sentences is not None and sentences_counter <= max_sentences:
+            LOGGER.warning(f"The corpus for the language {language} is to small for {max_sentences} sentences. It has {sentences_counter} sentences.")
         return count_table
     
     def compute_total_tree_features(self,
@@ -130,16 +138,17 @@ class HeadDirectionEntropy:
         for tree_feature in joint_counts_table:
             feature_occurences = sum(joint_counts_table[tree_feature].values())
             prob_tree_feature = feature_occurences / total_tree_features
+            entropy_direction_given_tree = 0.0
             for direction in joint_counts_table[tree_feature]:
                 prob_direction_given_tree = joint_counts_table[tree_feature][direction] / feature_occurences
-                entropy_direction_given_tree = prob_direction_given_tree * log2(prob_direction_given_tree)
-                conditional_entropy -= prob_tree_feature * entropy_direction_given_tree
+                entropy_direction_given_tree += prob_direction_given_tree * log2(prob_direction_given_tree)
+            conditional_entropy -= prob_tree_feature * entropy_direction_given_tree
         return conditional_entropy
     
-    def __call__(self, conll_file, max_sentences=1_000) -> float:
+    def __call__(self, conllu_file, max_sentences=1_000) -> float:
         """
         Run the estimation of the degree word order freedom\
-        given the sentences.
+        given a conllu corpus.
         
         Parameters
         ----------
@@ -153,14 +162,15 @@ class HeadDirectionEntropy:
             Entropy to be interpreted as measuring\
             the degree of word order freedom.
         """
-        utterances_tree: UtteranceTree = self.trees(conll_file)
-        joint_counts_table: defaultdict = self.joint_counts(utterances_tree, max_sentences)
+        language = conllu_file.stem
+        utterances_tree: UtteranceTree = self.trees(conllu_file)
+        joint_counts_table: defaultdict = self.joint_counts(utterances_tree, language, max_sentences)
         return self.head_direction_entropy(joint_counts_table)
 
 def parse_arguments():
     """Get the arguments from command line."""
     parser = ArgumentParser()
-    parser.add_argument("-c", "--corpora_folder", help="File containing the conll copora.")
+    parser.add_argument("-c", "--corpora_folder", help="Folder containing the conll copora.")
     parser.add_argument("-o", "--output_path", help="Where the results will be stored.")
     return parser.parse_args()
 
@@ -174,7 +184,8 @@ def main():
     output_path.mkdir(exist_ok=True, parents=True)
     entropy_estimator = HeadDirectionEntropy()
     results = []
-    for conll_file in Path(args.corpora_folder).glob("*.conllu"):
+    corpora = list(Path(args.corpora_folder).glob("*.conllu"))
+    for conll_file in tqdm(corpora, total=len(corpora)):
         language = conll_file.stem
         entropy_1000 = entropy_estimator(conll_file, 1000)
         entropy_all = entropy_estimator(conll_file, None)
@@ -184,10 +195,7 @@ def main():
                             "entropy_all" : entropy_all
                             }
         results.append(language_results)
-    print(results)
-    pd.DataFrame(results).to_csv(output_path / "restults.csv")
-
-
+    pd.DataFrame(results).sort_values("entropy_1000").to_csv(output_path / "restults.csv")
 
 if __name__ == "__main__":
     main()
