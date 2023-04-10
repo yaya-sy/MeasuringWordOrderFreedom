@@ -1,0 +1,29 @@
+---
+title: "plots"
+output:
+  html_document:
+    df_print: paged
+editor_options:
+  chunk_output_type: inline
+---
+
+```{r, include=FALSE}
+library(ggpubr)
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(svglite)
+```
+
+
+```{r}
+setwd("/Users/yysy/Desktop/PersonalMLProjects/MeasuringWordOrderFreedom")
+```
+
+
+
+```{r, include=FALSE}
+read.csv("../results/results.csv")
+```
+
+
