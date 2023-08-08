@@ -1,5 +1,7 @@
 # MeasuringWordOrderFreedom
 
+![image info](./results/plot.jpg)
+
 Reproducing the results of the Head Direction Entropy for measuring the degree of word order freedom in human languages. This metric is presented in details in [Quantifying Word Order Freedom in Dependency Corpora](https://aclanthology.org/W15-2112) (Futrell et al., 2015)
 
 ## Activate the conda environment
